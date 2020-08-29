@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Area Motorizzazioni</title>
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
+    <link href="./bootstrap/css/styles_index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #185156">
+        <div class="container">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav navbar-right">
+                <!--<li class="nav-item active">
+                    <a class="nav-link" href="#nogo">Registrati</a>
+                </li>-->
+                <li class="nav-item active">
+                    <a class="nav-link" href="#nogo">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container ">
+        <div class="py-5 text-center">
+            <!---<img class="d-block mx-auto mb-4" src="./img/logo.png" alt="" width="100" height="100">-->
+            <h2>Area Motorizzazioni</h2>
+            <p class="lead"> In questa area la motorizzazione può inserire nuove automobili nel portale</p>
+        </div>
+
+
+
+        <div class="mb-3 text-center" id="divDiInserimento" style="max-width: 700px; margin: auto">
+
+            <label>Inserisci Targa</label>
+            <input type="text" class="form-control" name="targa" style="text-transform: uppercase;" required>
+
+            <br>
+            <label>Inserisci Telaio</label>
+            <input type="text" class="form-control" name="telaio" style="text-transform: uppercase;" required>
+
+            <br>
+            <label>Inserisci Marca</label>
+            <select class="form-control" id="marca" name="marca" onchange="riempiModello()" style="text-transform: uppercase;" required></select>
+
+            <br>
+            <label>Inserisci Modello</label>
+            <select class="form-control" id="modello" name="modello" style="text-transform: uppercase;"  required></select>
+
+            <br>
+            <label>Inserisci Classe Ambientale</label>
+            <select type="text" class="form-control" name="classeAmbientale" style="text-transform: uppercase;" required>
+                <option value="EURO3">EURO3</option>
+                <option value="EURO4">EURO4</option>
+                <option value="EURO5">EURO5</option>
+                <option value="EURO6">EURO6</option>
+            </select>
+
+            <br>
+            <label>Inserisci Data Immatricolazione</label>
+            <input type="text" class="form-control" name="dataImmatricolazione" placeholder="gg-mm-aaaa" style="text-transform: uppercase;" required>
+
+            <br>
+            <label>Inserisci Km Percorsi</label>
+            <input type="number" class="form-control" name="kmPercorsi" style="text-transform: uppercase;" required>
+
+            <br>
+            <label>Inserisci Proprietario</label>
+            <input type="text" class="form-control" name="proprietario" style="text-transform: uppercase;" required>
+
+            <br>
+            <input type="button" class="btn btn-primary btn-lg btn-block" onclick="InviaPost()" value="Inserisci">
+        </div>
+
+        <script>
+            function riempiMarca() {
+                $.getJSON('./car.json', function (data) {
+                    risposta = data
+                    $.each(risposta, function (chiave, valore) {
+                        var text = `<option value="${valore.marca}">${valore.marca}</option>`
+                        $('#marca').append(text)
+                    });
+                });
+            }
+
+            riempiMarca();
+
+            function riempiModello() {
+                var node = document.getElementById("modello");          //Prendiamo l'elemento griglia
+                while (node.firstChild) {                               //Rimuoviamo ogni card contenuta al suo interno
+                    node.removeChild(node.firstChild);
+                }
+                var marcaScelta = $("#marca").val()
+                $.getJSON('./car.json', function (data) {
+                    risposta = data                                      //JSON della risposta
+                    var obj = $.grep(risposta, function (obj) { return obj.marca === marcaScelta; })[0]; //trovare l'oggetto in base al valore del suo attributo "marca"
+                    for (i = 0; i < obj.modelli.length; i++) {
+                        var text = `<option value="${obj.modelli[i]}">${obj.modelli[i]}</option>`
+                        $('#modello').append(text)
+                    }
+                });
+            }
+
+            function InviaPost() {
+                $("#paragrafoDiCreazioneRiuscita").remove();
+
+                var targa = document.getElementsByName("targa")[0].value.toUpperCase();
+                var telaio = document.getElementsByName("telaio")[0].value.toUpperCase();
+                var marca = document.getElementsByName("marca")[0].value.toUpperCase();
+                var modello = document.getElementsByName("modello")[0].value.toUpperCase();
+                var classeAmbientale = document.getElementsByName("classeAmbientale")[0].value.toUpperCase();
+                var dataImmatricolazione = document.getElementsByName("dataImmatricolazione")[0].value.toUpperCase();
+                var kmPercorsi = document.getElementsByName("kmPercorsi")[0].value.toUpperCase();
+                var proprietario = document.getElementsByName("proprietario")[0].value.toUpperCase();
+                
+                $.ajax('http://localhost:8080/api/addcar', {
+                    'data': JSON.stringify({
+                        targa: targa,
+                        telaio: telaio,
+                        marca: marca,
+                        modello: modello,
+                        classeAmbientale: classeAmbientale,
+                        dataImmatricolazione: dataImmatricolazione,
+                        kmPercorsi: kmPercorsi,
+                        proprietario: proprietario
+                    }),
+                    'type': 'POST',
+                    success: function (result) {
+                        // you can see the result from the console
+                        // tab of the developer tools
+                        $('#divDiInserimento').append(`<br><p style="color:green" id="paragrafoDiCreazioneRiuscita">${result["response"]}</p>`);
+                    },
+                    error: function (xhr, resp, text) {
+                        console.log(xhr, resp, text);
+                    },
+                    'processData': false,
+                    'contentType': 'application/json' 
+                });
+
+            }
+
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+[{
+    "Key": "CE073RR",
+    "Record": {
+        "assicurazione": {
+            "compagnia": "unipol",
+            "scadenza": "18-11-2020"
+        },
+        "classeAmbientale": "EURO4",
+        "dataImmatricolazione": "22-12-2003",
+        "docType": "car",
+        "kmPercorsi": 130000,
+        "marca": "Volkswagen",
+        "modello": "Polo",
+        "proprietario": "Manuel Gallucci",
+        "revisione": {
+            "data": "30-04-2019",
+            "esito": 1,
+            "km": "95000",
+            "meccanico": "daniele"
+        },
+        "targa": "CE073RR",
+        "telaio": "Y674679"
+    }
+},
+{
+    "Key": "CM234HB",
+    "Record": {
+        "assicurazione": {
+            "compagnia": "unipol",
+            "scadenza": "30-07-2021"
+        },
+        "classeAmbientale": "EURO2",
+        "dataImmatricolazione": "30-07-2019",
+        "docType": "car",
+        "kmPercorsi": 110000,
+        "marca": "Fiat",
+        "modello": "Croma",
+        "proprietario": "Mario Rossi",
+        "revisione": {
+            "data": "30-07-2020",
+            "esito": 1,
+            "km": "30000",
+            "meccanico": "piero"
+        },
+        "targa": "CM234HB",
+        "telaio": "X123456"
+    }
+}
+]

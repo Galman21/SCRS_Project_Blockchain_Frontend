@@ -75,7 +75,7 @@
 
                 $("#paragrafoDiErrore").remove();
 
-                $.ajax('http://localhost:8080/api/changeowner/' + targa, {
+                $.ajax('http://localhost:8081/api/changeowner/' + targa, {
                     'data': JSON.stringify({
                         nuovo_proprietario: nuovo_proprietario
                     }),

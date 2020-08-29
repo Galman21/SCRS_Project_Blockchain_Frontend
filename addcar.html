@@ -136,7 +136,7 @@
                 var kmPercorsi = document.getElementsByName("kmPercorsi")[0].value.toUpperCase();
                 var proprietario = document.getElementsByName("proprietario")[0].value.toUpperCase();
                 
-                $.ajax('http://localhost:8080/api/addcar', {
+                $.ajax('http://localhost:8081/api/addcar', {
                     'data': JSON.stringify({
                         targa: targa,
                         telaio: telaio,

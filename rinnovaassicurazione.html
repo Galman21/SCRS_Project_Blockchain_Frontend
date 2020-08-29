@@ -79,7 +79,7 @@
 
                 $("#paragrafoDiErrore").remove();
                 
-                $.ajax('http://localhost:8080/api/rinnovaassicurazione/' + targa, {
+                $.ajax('http://localhost:8082/api/rinnovaassicurazione/' + targa, {
                     'data': JSON.stringify({
                         compagnia: compagnia,
                         scadenza: scadenza,

@@ -68,7 +68,7 @@
                 while (node.firstChild) {                               //Rimuoviamo ogni card contenuta al suo interno
                     node.removeChild(node.firstChild);
                 }
-                $.getJSON('http://localhost:8080/api/queryallcars', function (data) {
+                $.getJSON('http://localhost:8081/api/queryallcars', function (data) {
                     //var data_formatted = data.substring(1,data.length -1 )
                     //var dj = JSON.stringify(data)
                     //console.log(JSON.parse(data)[0].Key)
@@ -176,7 +176,7 @@
                 if (targaInserita === '') {
                     mostraTutte()
                 } else {
-                    $.getJSON('http://localhost:8080/api/query/' + targaInserita, function (data) {
+                    $.getJSON('http://localhost:8081/api/query/' + targaInserita, function (data) {
                         //var data_formatted = data.substring(1,data.length -1 )
                         //var dj = JSON.stringify(data)
                         //console.log(JSON.parse(data)[0].Key)

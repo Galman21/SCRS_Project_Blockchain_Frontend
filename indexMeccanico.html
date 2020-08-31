@@ -4,10 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title> DLT CAR </title>
+    <title> Area Meccanico </title>
 
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./carhartl-jquery-cookie-92b7715/jquery.cookie.js" type="text/javascript"></script>
 
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
@@ -24,13 +27,13 @@
         <div class="container">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#nogo">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
 
             <ul class="navbar-nav navbar-right">
                 <li class="nav-item active">
-                    <a class="nav-link" href="./login.html">Login</a>
+                    <a class="nav-link" href="#nogo" onclick="Logout()">Logout</a>
                 </li>
             </ul>
         </div>
@@ -43,27 +46,27 @@
 
             <div class="py-5 text-center" style="margin-top: 0px; margin-bottom: 0px">
                 <!---<img class="d-block mx-auto mb-4" src="./img/logo.png" alt="" width="100" height="100">-->
-                <h2>CAR DLT</h2>
-                <p class="lead"> Benvenuto nella Distributed Ledger che gestisce le informazioni delle automobili</p>
+                <h2>Area Meccanici</h2>
+                <p class="lead"> Benvenuto nell'area riservata ai meccanici</p>
             </div>
 
-            <!-- Project One Row-->
-            <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-                <div class="col-lg-6"><img class="img-fluid" src="./img/ricerca.jpg" alt="" /></div>
-                <div class="col-lg-6">
+            <!-- Project Two Row-->
+            <div class="row justify-content-center no-gutters">
+                <div class="col-lg-6"><img class="img-fluid" src="./img/revisione.jpg" alt="" /></div>
+                <div class="col-lg-6 order-lg-first">
                     <div class="bg-black text-center h-100 project" style="background-color: #185156">
                         <div class="d-flex h-100" style="background-color: #185156">
-                            <div class="project-text w-100 my-auto text-center text-lg-left"
+                            <div class="project-text w-100 my-auto text-center text-lg-right"
                                 style="background-color: #185156">
-                                <h4 class="text-white">Verifica Stato Automobile</h4>
-                                <p class="mb-0 text-white-50">Verifica la copertura
-                                    assicurativa, la revisione e la classe ambientale nel nostro portale</p>
-                                <hr class="d-none d-lg-block mb-0 ml-0" />
+                                <h4 class="text-white">Inserisci Revisione</h4>
+                                <p class="mb-0 text-white-50"> Inserisci le informazioni
+                                    relative alla revisione di una automobile presente nella nostra DLT </p>
+                                <hr class="d-none d-lg-block mb-0 mr-0" />
                                 <br>
                                 <div class="container d-flex h-100 align-items-center">
                                     <div class="mx-auto text-center">
                                         <a class="btn btn-primary js-scroll-trigger"
-                                            href="./verificaStato.html">Vai</a>
+                                            href="./aggiungirevisione.html">Vai</a>
                                     </div>
                                 </div>
                             </div>
@@ -74,23 +77,23 @@
 
             <br><br>
 
-            <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-                <div class="col-lg-6"><img class="img-fluid" src="./img/ricerca.jpg" alt="" /></div>
-                <div class="col-lg-6">
+            <!-- Project Two Row-->
+            <div class="row justify-content-center no-gutters">
+                <div class="col-lg-6"><img class="img-fluid" src="./img/revisione.jpg" alt="" /></div>
+                <div class="col-lg-6 order-lg-first">
                     <div class="bg-black text-center h-100 project" style="background-color: #185156">
                         <div class="d-flex h-100" style="background-color: #185156">
-                            <div class="project-text w-100 my-auto text-center text-lg-left"
+                            <div class="project-text w-100 my-auto text-center text-lg-right"
                                 style="background-color: #185156">
-                                <h4 class="text-white">Statistiche immatricolazioni</h4>
-                                <p class="mb-0 text-white-50">Sei curioso? Verifica il numero di immatricolazioni in 
-                                    un determinato mese
-                                </p>
-                                <hr class="d-none d-lg-block mb-0 ml-0" />
+                                <h4 class="text-white">Inserisci Intervento Tecnico</h4>
+                                <p class="mb-0 text-white-50"> Inseririsci le informazioni
+                                    relative ad un intervento tecnico su di un'automobile presente nella nostra DLT </p>
+                                <hr class="d-none d-lg-block mb-0 mr-0" />
                                 <br>
                                 <div class="container d-flex h-100 align-items-center">
                                     <div class="mx-auto text-center">
                                         <a class="btn btn-primary js-scroll-trigger"
-                                            href="./queryImmatricolazioni.html">Vai</a>
+                                            href="./aggiungiinterventotecnico.html">Vai</a>
                                     </div>
                                 </div>
                             </div>
@@ -98,6 +101,7 @@
                     </div>
                 </div>
             </div>
+
 
         </div>
     </section>
@@ -142,6 +146,24 @@
             </div>
         </section>
     </footer>
+
+    <script>
+        function checkCookie() {
+            if ($.cookie('user') === 'admin.org3') {
+                return false;
+            } else {
+                window.location = 'http://localhost:8888/login.html';
+            }
+        }
+
+        function Logout() {
+            document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location = 'http://localhost:8888/index.html';
+        }
+
+        checkCookie();
+    </script>
+
     <!-- Bootstrap core JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

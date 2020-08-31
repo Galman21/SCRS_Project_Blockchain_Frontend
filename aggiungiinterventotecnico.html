@@ -38,7 +38,7 @@
                     <a class="nav-link" href="#nogo">Registrati</a>
                 </li>-->
                 <li class="nav-item active">
-                    <a class="nav-link" href="./indexMeccanico.html">Area Meccanico</a>
+                    <a class="nav-link" href="./indexMeccanico.html">Indietro</a>
                 </li>
             </ul>
         </div>
@@ -51,8 +51,8 @@
     <div class="container ">
         <div class="py-5 text-center">
             <!---<img class="d-block mx-auto mb-4" src="./img/logo.png" alt="" width="100" height="100">-->
-            <h2>Inserimento Revisione</h2>
-            <p class="lead"> In questa area i meccanici autorizzati possono aggiornare lo stato della revisione delle automobili nel portale</p>
+            <h2>Inserimento Intevento Tecnico</h2>
+            <p class="lead"> In questa area i meccanici autorizzati possono aggiungere un intervento tecnico alle automobili nel portale</p>
         </div>
 
 
@@ -75,8 +75,8 @@
             <input type="text" class="form-control" name="km" style="text-transform: uppercase;" required>
 
             <br>
-            <label>Esito</label>
-            <input type="text" class="form-control" name="esito" style="text-transform: uppercase;" required>
+            <label>Descrizione</label>
+            <input type="text" class="form-control" name="descrizione" style="text-transform: uppercase;" required>
 
             <br>
             <input type="button" class="btn btn-primary btn-lg btn-block" onclick="InviaPost()" value="Inserisci">
@@ -98,17 +98,16 @@
                 var meccanico = document.getElementsByName("meccanico")[0].value.toUpperCase();
                 var data = document.getElementsByName("data")[0].value.toUpperCase();
                 var km = document.getElementsByName("km")[0].value.toUpperCase();
-                var esito = document.getElementsByName("esito")[0].value.toUpperCase();
+                var descrizione = document.getElementsByName("descrizione")[0].value.toUpperCase();
 
                 $("#paragrafoDiErrore").remove();
                 
-                $.ajax('http://localhost:8083/api/aggiungirevisione/' + targa, {
+                $.ajax('http://localhost:8083/api/aggiungiinterventotecnico/' + targa, {
                     'data': JSON.stringify({
                         meccanico:meccanico,
                         data:data,
                         km:km,
-                        esito:esito,
-                        user: $.cookie('user')
+                        descrizione:descrizione
                     }),
                     'type': 'POST',
                     success: function (result) {

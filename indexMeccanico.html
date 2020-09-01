@@ -149,7 +149,7 @@
 
     <script>
         function checkCookie() {
-            if ($.cookie('user') === 'admin.org3') {
+            if ($.cookie('user').includes(".org3")) {
                 return false;
             } else {
                 window.location = 'http://localhost:8888/login.html';

@@ -51,7 +51,6 @@
             <p style="color:red" id="paragrafoDiErrore"></p>
         </div>
 
-        <br>
 
         <div class="container mt-4" id="griglia"></div>
 
@@ -95,7 +94,18 @@
                     }
 
 
+
+                    var oggi = new Date();
+                        
                     $.each(oggetto_risposta, function (chiave, valore) {
+
+                        var ultimaModifica = new Date(valore.data);
+
+                        var Difference_In_Time = ultimaModifica.getTime() - oggi.getTime();
+
+                        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+                        var nuovo = Difference_In_Days.toString().split(".")[0].substring(1, Difference_In_Days.length)
 
                         background_color = "#185156"
 
@@ -111,7 +121,7 @@
                                                                     </p>
                                         </div>
                                         <div class="card-footer">
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                            <p class="card-text"><small class="text-muted">${nuovo} giorni fa</small></p>
                                         </div>
                                     </div>`
                         $('#griglia').append(text)

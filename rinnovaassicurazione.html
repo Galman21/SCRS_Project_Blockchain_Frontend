@@ -61,7 +61,7 @@
 
             <br>
             <label>Inserisci Compagnia</label>
-            <input type="text" class="form-control" name="compagnia" style="text-transform: uppercase;" required>
+            <input type="text" class="form-control" id="compagnia" name="compagnia" style="text-transform: uppercase;" value="" readonly required>
 
             <br>
             <label>Inserisci Scadenza</label>
@@ -73,8 +73,11 @@
         </div>
 
         <script>
+        
             function checkCookie() {
-                if ($.cookie('user') === 'admin.org2') {
+                if ($.cookie('user').includes(".org2")) {
+                    var nomeCompagnia = $.cookie('user').split(".")[0].toUpperCase();
+                    document.getElementById("compagnia").setAttribute('value', nomeCompagnia);
                     return false;
                 } else {
                     window.location = 'http://localhost:8888/login.html';
@@ -93,7 +96,8 @@
                 $.ajax('http://localhost:8082/api/rinnovaassicurazione/' + targa, {
                     'data': JSON.stringify({
                         compagnia: compagnia,
-                        scadenza: scadenza
+                        scadenza: scadenza,
+                        user: $.cookie('user')
                     }),
                     'type': 'POST',
                     success: function (result) {

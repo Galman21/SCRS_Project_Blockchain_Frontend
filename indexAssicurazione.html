@@ -13,7 +13,9 @@
 
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="./bootstrap/css/styles_index.css" rel="stylesheet" />
@@ -27,7 +29,7 @@
                     <a class="nav-link" href="#nogo">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-            
+
             <ul class="navbar-nav navbar-right">
                 <li class="nav-item active">
                     <a class="nav-link" href="#nogo" onclick="Logout()">Logout</a>
@@ -47,7 +49,7 @@
                 <p class="lead"> Benvenuto nell'area riservata alle compagnie assicurative</p>
             </div>
 
-           
+
 
             <!-- Project One Row-->
             <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
@@ -55,15 +57,17 @@
                 <div class="col-lg-6">
                     <div class="bg-black text-center h-100 project" style="background-color: #185156">
                         <div class="d-flex h-100" style="background-color: #185156">
-                            <div class="project-text w-100 my-auto text-center text-lg-left" style="background-color: #185156">
+                            <div class="project-text w-100 my-auto text-center text-lg-left"
+                                style="background-color: #185156">
                                 <h4 class="text-white">Inserisci Assicurazione</h4>
-                                <p class="mb-0 text-white-50"> Inserire e/o modifica le informazioni 
+                                <p class="mb-0 text-white-50"> Inserire e/o modifica le informazioni
                                     assicurative relative ad una automobile presente nella nostra DLT</p>
                                 <hr class="d-none d-lg-block mb-0 ml-0" />
                                 <br>
                                 <div class="container d-flex h-100 align-items-center">
                                     <div class="mx-auto text-center">
-                                        <a class="btn btn-primary js-scroll-trigger" href="./rinnovaassicurazione.html">Vai</a>
+                                        <a class="btn btn-primary js-scroll-trigger"
+                                            href="./rinnovaassicurazione.html">Vai</a>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +80,7 @@
         </div>
     </section>
 
-    
+
     <!-- Footer-->
     <footer class="footer small text-center text-50" style="background-color: #185156">
         <section class="contact-section " style="background-color: #185156">
@@ -117,22 +121,24 @@
         </section>
     </footer>
 
-<script>
-    function checkCookie() {
-            if ($.cookie('user') === 'admin.org2') {
+    <script>
+        function checkCookie() {
+            if ($.cookie('user').includes(".org2")) {
                 return false;
             } else {
                 window.location = 'http://localhost:8888/login.html';
-            }
+            }            
         }
+
+        checkCookie();
 
         function Logout() {
             document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             window.location = 'http://localhost:8888/index.html';
         }
 
-        checkCookie();
-</script>
+
+    </script>
 
     <!-- Bootstrap core JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

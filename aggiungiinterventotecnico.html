@@ -49,7 +49,8 @@
         <div class="py-5 text-center">
             <!---<img class="d-block mx-auto mb-4" src="./img/logo.png" alt="" width="100" height="100">-->
             <h2>Inserimento Intevento Tecnico</h2>
-            <p class="lead"> In questa area i meccanici autorizzati possono aggiungere un intervento tecnico alle automobili nel portale</p>
+            <p class="lead"> In questa area i meccanici autorizzati possono aggiungere un intervento tecnico alle
+                automobili nel portale</p>
         </div>
 
 
@@ -61,11 +62,12 @@
 
             <br>
             <label>Inserisci Meccanico</label>
-            <input type="text" class="form-control" name="meccanico" style="text-transform: uppercase;" required>
+            <input type="text" class="form-control" id="meccanico" name="meccanico" style="text-transform: uppercase;" value="" readonly required>
 
             <br>
             <label>Inserisci Data</label>
-            <input type="text" class="form-control" name="data" placeholder="aaaa-mm-gg" style="text-transform: uppercase;" required>
+            <input type="text" class="form-control" name="data" placeholder="aaaa-mm-gg"
+                style="text-transform: uppercase;" required>
 
             <br>
             <label>Km</label>
@@ -82,7 +84,12 @@
 
         <script>
             function checkCookie() {
-                if ($.cookie('user') === 'admin.org3') {
+                if ($.cookie('user') === "marianidaniele.org3") {
+                    document.getElementById("meccanico").setAttribute('value', "MARIANI DANIELE");
+                    return false;
+                }
+                if ($.cookie('user') === "ruscittogiuseppe.org3") {
+                    document.getElementById("meccanico").setAttribute('value', "RUSCITTO GIUSEPPE");
                     return false;
                 } else {
                     window.location = 'http://localhost:8888/login.html';
@@ -99,13 +106,14 @@
                 var descrizione = document.getElementsByName("descrizione")[0].value.toUpperCase();
 
                 $("#paragrafoDiErrore").remove();
-                
+
                 $.ajax('http://localhost:8083/api/aggiungiinterventotecnico/' + targa, {
                     'data': JSON.stringify({
-                        meccanico:meccanico,
-                        data:data,
-                        km:km,
-                        descrizione:descrizione
+                        meccanico: meccanico,
+                        data: data,
+                        km: km,
+                        descrizione: descrizione,
+                        user: $.cookie('user')
                     }),
                     'type': 'POST',
                     success: function (result) {

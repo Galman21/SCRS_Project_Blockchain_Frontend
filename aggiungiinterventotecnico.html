@@ -28,9 +28,6 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#nogo" tabindex="-1" aria-disabled="true">Inserimento Dati</a>
-                </li>
             </ul>
 
             <ul class="navbar-nav navbar-right">
@@ -38,7 +35,7 @@
                     <a class="nav-link" href="#nogo">Registrati</a>
                 </li>-->
                 <li class="nav-item active">
-                    <a class="nav-link" href="./indexMeccanico.html">Indietro</a>
+                    <a class="nav-link" href="./indexMeccanico.html">Area Meccanico</a>
                 </li>
             </ul>
         </div>
@@ -80,6 +77,7 @@
 
             <br>
             <input type="button" class="btn btn-primary btn-lg btn-block" onclick="InviaPost()" value="Inserisci">
+            <br>
         </div>
 
         <script>
@@ -111,7 +109,7 @@
                     }),
                     'type': 'POST',
                     success: function (result) {
-                        $('#divDiRicerca').append(`<br><p style="color:red" id="paragrafoDiErrore">${result["response"]}</p>`);
+                        $('#divDiRicerca').append(`<p style="color:red" id="paragrafoDiErrore">${result["response"]}</p>`);
                     },
                     error: function (xhr, resp, text) {
                         console.log(xhr, resp, text);

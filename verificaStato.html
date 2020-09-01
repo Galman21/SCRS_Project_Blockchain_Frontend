@@ -40,7 +40,7 @@
         <div class="py-5 text-center">
             <!---<img class="d-block mx-auto mb-4" src="./img/logo.png" alt="" width="100" height="100">-->
             <h2>Consulta dei dati</h2>
-            <p class="lead"> Qui puoi visualizzare lo stato ecologioco, dell'assicurazione e della revisione delle
+            <p class="lead"> Qui puoi visualizzare lo stato ecologico, dell'assicurazione e della revisione delle
                 automobili presenti nel portale</p>
         </div>
 
@@ -49,6 +49,7 @@
             <input type="text" class="form-control" name="targa" value="" style="text-transform: uppercase;" required>
             <br>
             <button type="button" class="btn btn-primary btn-lg btn-block" onclick="ricercaSpecifica()">Cerca</button>
+            <br>
         </div>
 
         <br>
@@ -77,7 +78,14 @@
 
                         if (risposta != "EURO4" && risposta != "EURO5" && risposta != "EURO6") {
                             background_color = "#B8B8B8";
-                            $('#divDiRicerca').append(`<br><p style="color:red" id="paragrafoDiErrore">Targa inesistente</p>`); //se la targa è inesistente avvisiamo l'utente
+                            $('#divDiRicerca').append(`<p style="color:red" id="paragrafoDiErrore">Targa inesistente</p>`); //se la targa è inesistente avvisiamo l'utente
+                            //return;                                                       //e stoppiamo l'esecuzione
+                        }
+
+                        if (risposta === "Targa inattiva") {
+                            background_color = "#B8B8B8";
+                            $("#paragrafoDiErrore").remove();
+                            $('#divDiRicerca').append(`<p style="color:red" id="paragrafoDiErrore">Targa inattiva</p>`); //se la targa è inesistente avvisiamo l'utente
                             //return;                                                       //e stoppiamo l'esecuzione
                         }
 
@@ -132,7 +140,7 @@
                         if (risposta == "Revisione Non Valida") {
                             background_color = "#FF0000";
                         }
-                        if (risposta == "Revisione Valida") {
+                        if (risposta.includes("Revisione Valida:")) {
                             background_color = "#4AAD0A";
                         }
 

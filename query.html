@@ -55,6 +55,7 @@
             <input type="text" class="form-control" name="targa" value="" style="text-transform: uppercase;" required>
             <br>
             <button type="button" class="btn btn-primary btn-lg btn-block" onclick="ricercaSpecifica()">Cerca</button>
+            <br>
         </div>
 
         <br>
@@ -173,10 +174,10 @@
                                         </div><br>
                                         <div class="mx-auto text-center">
                                             <a class="btn btn-primary js-scroll-trigger" onclick="Distruggi('${valore.Record.targa}')" href="#nogo">Distruggi</a>
-                                        </div><br>
+                                        </div><br><!--
                                         <div class="card-footer">
                                             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                        </div>
+                                        </div>-->
                                     </div>`
                         $('#griglia').append(text)
                     });
@@ -206,7 +207,7 @@
 
 
                         if (risposta == "Errore, controllare la targa e riprovare") {
-                            $('#divDiRicerca').append(`<br><p style="color:red" id="paragrafoDiErrore">Targa inesistente</p>`)  //se la targa è inesistente avvisiamo l'utente
+                            $('#divDiRicerca').append(`<p style="color:red" id="paragrafoDiErrore">Targa inesistente</p>`)  //se la targa è inesistente avvisiamo l'utente
                             return                                                         //e stoppiamo l'esecuzione
                         }
 
@@ -291,10 +292,10 @@
                                         </div><br>
                                         <div class="mx-auto text-center">
                                             <a class="btn btn-primary js-scroll-trigger" onclick="Distruggi('${oggetto_risposta.targa}')" href="#nogo">Distruggi</a>
-                                        </div><br>
+                                        </div><br><!--
                                         <div class="card-footer">
                                             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                        </div>
+                                        </div>-->
                                     </div>`
 
                         $('#griglia').append(text)
@@ -315,7 +316,7 @@
                     }),
                     'type': 'POST',
                     success: function (result) {
-                        $('#divDiRicerca').append(`<br><p style="color:red" id="paragrafoDiErrore">${result["response"]}</p>`);  //se la targa è inesistente avvisiamo l'utente
+                        $('#divDiRicerca').append(`<p style="color:red" id="paragrafoDiErrore">${result["response"]}</p>`);  //se la targa è inesistente avvisiamo l'utente
                         //e stoppiamo l'esecuzione
                     },
                     error: function (xhr, resp, text) {

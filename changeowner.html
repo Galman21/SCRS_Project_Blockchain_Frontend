@@ -90,8 +90,12 @@
                     }),
                     'type': 'POST',
                     success: function (result) {
-                        $('#divDiRicerca').append(`<p style="color:red" id="paragrafoDiErrore">${result["response"]}</p>`);  //se la targa è inesistente avvisiamo l'utente
-                        //e stoppiamo l'esecuzione
+                        if (result["response"] === "Proprietario aggiornato"){
+                            $('#divDiRicerca').append(`<p style="color:green" id="paragrafoDiErrore">${result["response"]}</p>`);  //se la targa è inesistente avvisiamo l'utente
+                        }
+                        if (result["response"] === "Proprietario non aggiornato"){
+                            $('#divDiRicerca').append(`<p style="color:red" id="paragrafoDiErrore">${result["response"]}</p>`);  //se la targa è inesistente avvisiamo l'utente
+                        }
                     },
                     error: function (xhr, resp, text) {
                         console.log(xhr, resp, text);

@@ -134,7 +134,12 @@
                     }),
                     'type': 'POST',
                     success: function (result) {
-                        $('#divDiRicerca').append(`<p style="color:red" id="paragrafoDiErrore">${result["response"]}</p>`);
+                        if (result["response"] === "Revisione aggiunta"){
+                            $('#divDiRicerca').append(`<p style="color:green" id="paragrafoDiErrore">${result["response"]}</p>`);
+                        }
+                        if (result["response"] === "Revisione non aggiunta"){
+                            $('#divDiRicerca').append(`<p style="color:red" id="paragrafoDiErrore">${result["response"]}</p>`);
+                        }
                     },
                     error: function (xhr, resp, text) {
                         console.log(xhr, resp, text);
